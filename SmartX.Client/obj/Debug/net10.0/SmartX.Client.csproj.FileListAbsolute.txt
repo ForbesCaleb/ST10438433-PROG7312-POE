@@ -39,8 +39,6 @@ C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\b
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\Microsoft.VisualBasic.Core.wo0j4p5bwa.wasm
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\Microsoft.Win32.Primitives.10cgayguzg.wasm
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\Microsoft.Win32.Registry.013keampsq.wasm
-C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\SmartX.Client.30ho5lm9lm.wasm
-C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\SmartX.Client.41s4v6qdxl.pdb
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\SmartX.Shared.d0hje1i13y.wasm
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\SmartX.Shared.xfefljkm5a.pdb
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.AppContext.8snd0f2zhs.wasm
@@ -209,7 +207,6 @@ C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\b
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.d2mloy49tr.wasm
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\WindowsBase.37slryrpry.wasm
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\blazor.webassembly.w3qd1tpl0e.js
-C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\dotnet.cmntg8fgwp.js
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\dotnet.js.map
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\dotnet.native.nv11mnxpl9.js
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\dotnet.native.qj7699jky1.wasm
@@ -241,7 +238,6 @@ C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\b
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.IO.FileSystem.AccessControl.t5xog3iunv.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.Text.Json.fd9zno69uy.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.Net.Quic.9jgnyoip8x.wasm.gz
-C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\SmartX.Client.30ho5lm9lm.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.Drawing.Primitives.tfb09wjyxi.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\Microsoft.AspNetCore.Components.Forms.81edhczag4.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.Linq.Parallel.dnd78dwit2.wasm.gz
@@ -271,7 +267,6 @@ C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\b
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.Resources.Reader.t5y50lfuv9.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.IO.IsolatedStorage.6pq4ienac7.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.IO.FileSystem.z1inehktr2.wasm.gz
-C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\SmartX.Client.41s4v6qdxl.pdb.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.Web.0i36ylqh8q.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.Text.Encoding.n3x5khcdb2.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\mscorlib.cw5m8agm4m.wasm.gz
@@ -398,7 +393,6 @@ C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\b
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.ObjectModel.dtaj15m47r.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.Security.Principal.Windows.p27z4008y2.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.Buffers.y5drwcp192.wasm.gz
-C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\dotnet.cmntg8fgwp.js.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.Data.kw9gesg45b.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.IO.Compression.ZipFile.o6r22nkrrt.wasm.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\System.Text.RegularExpressions.zgqb4ut5g3.wasm.gz
@@ -1161,10 +1155,6 @@ C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\o
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\compressed\bp2lowbb19-{0}-d0hje1i13y-d0hje1i13y.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\compressed\87q7fcuuh7-{0}-xfefljkm5a-xfefljkm5a.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\compressed\zcvfatw1lm-{0}-mboztfuody-mboztfuody.gz
-C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\compressed\37n2nrncqn-{0}-30ho5lm9lm-30ho5lm9lm.gz
-C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\compressed\74jtbhelp0-{0}-41s4v6qdxl-41s4v6qdxl.gz
-C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\compressed\ss1y0ndpxn-{0}-cmntg8fgwp-cmntg8fgwp.gz
-C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\compressed\8qmbxpfxrx-{0}-5ivxy2ql13-5ivxy2ql13.gz
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\staticwebassets.development.json
@@ -1176,3 +1166,13 @@ C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\o
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\refint\SmartX.Client.dll
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\SmartX.Client.pdb
 C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\ref\SmartX.Client.dll
+C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\SmartX.Client.9fvg365lyw.wasm
+C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\SmartX.Client.p921bsxrqs.pdb
+C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\dotnet.a26xmcehpa.js
+C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\SmartX.Client.9fvg365lyw.wasm.gz
+C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\SmartX.Client.p921bsxrqs.pdb.gz
+C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\bin\Debug\net10.0\wwwroot\_framework\dotnet.a26xmcehpa.js.gz
+C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\compressed\37n2nrncqn-{0}-9fvg365lyw-9fvg365lyw.gz
+C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\compressed\74jtbhelp0-{0}-p921bsxrqs-p921bsxrqs.gz
+C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\compressed\ss1y0ndpxn-{0}-a26xmcehpa-a26xmcehpa.gz
+C:\Users\caleb\OneDrive\Documents\GitHub\ST10438433-PROG7312-POE\SmartX.Client\obj\Debug\net10.0\compressed\8qmbxpfxrx-{0}-fj5p394c32-fj5p394c32.gz
