@@ -1,0 +1,119 @@
+{
+  "version": 2,
+  "dgSpecHash": "3Zf0rjqDGvA=",
+  "success": false,
+  "projectFilePath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.NET.Sdk.WebAssembly.Pack (>= 10.0.12)' for 'net10.0'. PackageSourceMapping is enabled, the following source(s) were not considered: C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org.",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "filePath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "libraryId": "Microsoft.NET.Sdk.WebAssembly.Pack",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.AspNetCore.Components.WebAssembly (>= 10.0.12)' for 'net10.0'. PackageSourceMapping is enabled, the following source(s) were not considered: C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org.",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "filePath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "libraryId": "Microsoft.AspNetCore.Components.WebAssembly",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.AspNetCore.App.Internal.Assets (>= 10.0.12)' for 'net10.0'. PackageSourceMapping is enabled, the following source(s) were not considered: C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org.",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "filePath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "libraryId": "Microsoft.AspNetCore.App.Internal.Assets",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.NET.ILLink.Tasks (>= 10.0.12)' for 'net10.0'. PackageSourceMapping is enabled, the following source(s) were not considered: C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org.",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "filePath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "libraryId": "Microsoft.NET.ILLink.Tasks",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.AspNetCore.Components.WebAssembly.DevServer (>= 10.0.12)' for 'net10.0'. PackageSourceMapping is enabled, the following source(s) were not considered: C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org.",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "filePath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "libraryId": "Microsoft.AspNetCore.Components.WebAssembly.DevServer",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.NET.Sdk.WebAssembly.Pack (>= 10.0.12)' for 'net10.0/browser-wasm'. PackageSourceMapping is enabled, the following source(s) were not considered: C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org.",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "filePath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "libraryId": "Microsoft.NET.Sdk.WebAssembly.Pack",
+      "targetGraphs": [
+        "net10.0/browser-wasm"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.AspNetCore.Components.WebAssembly (>= 10.0.12)' for 'net10.0/browser-wasm'. PackageSourceMapping is enabled, the following source(s) were not considered: C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org.",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "filePath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "libraryId": "Microsoft.AspNetCore.Components.WebAssembly",
+      "targetGraphs": [
+        "net10.0/browser-wasm"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.AspNetCore.App.Internal.Assets (>= 10.0.12)' for 'net10.0/browser-wasm'. PackageSourceMapping is enabled, the following source(s) were not considered: C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org.",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "filePath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "libraryId": "Microsoft.AspNetCore.App.Internal.Assets",
+      "targetGraphs": [
+        "net10.0/browser-wasm"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.NET.ILLink.Tasks (>= 10.0.12)' for 'net10.0/browser-wasm'. PackageSourceMapping is enabled, the following source(s) were not considered: C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org.",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "filePath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "libraryId": "Microsoft.NET.ILLink.Tasks",
+      "targetGraphs": [
+        "net10.0/browser-wasm"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Unable to resolve 'Microsoft.AspNetCore.Components.WebAssembly.DevServer (>= 10.0.12)' for 'net10.0/browser-wasm'. PackageSourceMapping is enabled, the following source(s) were not considered: C:\\Program Files\\dotnet\\library-packs, Microsoft Visual Studio Offline Packages, nuget.org.",
+      "projectPath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "filePath": "C:\\Users\\caleb\\OneDrive\\Documents\\GitHub\\ST10438433-PROG7312-POE\\SmartX.Client\\SmartX.Client.csproj",
+      "libraryId": "Microsoft.AspNetCore.Components.WebAssembly.DevServer",
+      "targetGraphs": [
+        "net10.0/browser-wasm"
+      ]
+    }
+  ]
+}
