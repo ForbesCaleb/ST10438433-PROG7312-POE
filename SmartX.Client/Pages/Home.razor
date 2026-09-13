@@ -1,7 +1,21 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<h1>Smart-X IoT Mesh Gateway</h1>
+<p>Choose an architectural pillar below.</p>
 
-<h1>Hello, world!</h1>
+<div class="pillar-menu">
+    <NavLink class="pillar" href="/ingestion">
+        <h3>📡 Sensor Data Ingestion &amp; Telemetry</h3>
+        <p>Register sensors, upload configs/logs, and watch live telemetry with anomaly alerts.</p>
+    </NavLink>
 
-Welcome to your new app.
+    <div class="pillar disabled">
+        <h3>⏱ Real-Time Command Stream &amp; History</h3>
+        <p>Disabled — to be implemented in Part 2 of the PoE.</p>
+    </div>
+
+    <div class="pillar disabled">
+        <h3>🕸 Network Topology &amp; Mesh Routing</h3>
+        <p>Disabled — to be implemented in the final PoE.</p>
+    </div>
+</div>
