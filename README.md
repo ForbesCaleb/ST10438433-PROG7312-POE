@@ -1,7 +1,7 @@
 # Smart-X IoT Mesh Gateway — Part 1
 ### Sensor Data Ingestion and Validation Gateway
 
-**Module:** PROG7312 / AAPD7112 — Advanced Application Development
+**Module:** PROG7312 
 **Student Number:** ST10438433
 
 ## Architecture
