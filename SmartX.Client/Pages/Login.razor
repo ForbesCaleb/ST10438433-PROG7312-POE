@@ -3,19 +3,20 @@
 @inject SmartX.Client.Services.AuthState Auth
 @inject NavigationManager Nav
 
-<div class="section-card" style="max-width:360px;margin:4rem auto;">
-    <h3>Smart-X Gateway Login</h3>
+<div class="login-card">
+    <h1>Sign in to the gateway</h1>
+    <p class="sub">Authenticate to reach the Smart-X control plane.</p>
+
     <EditForm Model="_credentials" OnValidSubmit="HandleLogin">
-        <div class="reg-form" style="flex-direction:column;align-items:stretch;">
-            <input @bind="_credentials.Email" placeholder="Email" />
-            <input @bind="_credentials.Password" type="password" placeholder="Password" />
-            <button type="submit">Sign In</button>
-        </div>
+        <input @bind="_credentials.Email" placeholder="Email" />
+        <input @bind="_credentials.Password" type="password" placeholder="Password" />
+        <button type="submit" class="primary">Sign in with Firebase</button>
     </EditForm>
-    <button style="margin-top:0.6rem;" @onclick="ContinueAsGuest">Continue as Guest</button>
+    <button class="guest" @onclick="ContinueAsGuest">Continue as Guest</button>
+
     @if (!string.IsNullOrEmpty(_error))
     {
-        <p style="color:#c62828;">@_error</p>
+        <p class="error">@_error</p>
     }
 </div>
 

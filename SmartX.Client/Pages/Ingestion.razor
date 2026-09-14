@@ -5,106 +5,103 @@
 @inject NavigationManager Nav
 @implements IAsyncDisposable
 
-<h1>Sensor Data Ingestion &amp; Telemetry</h1>
+<div class="app-shell">
+    <div class="sidebar">
+        <NavLink href="/gateway" class="back-link">&lt; Back to gateway</NavLink>
+        <div class="module-title">◆ Telemetry Ingestion</div>
 
-<div class="section-card">
-    <h3>Register a Sensor</h3>
-    <EditForm Model="_newSensor" OnValidSubmit="RegisterSensorAsync">
-        <div class="reg-form">
-            <input @bind="_newSensor.MacAddress" placeholder="Device MAC (AA:BB:CC:00:00:0X)" required />
-            <input @bind="_newSensor.Location" placeholder="Zone / Room / Node ID" required />
-            <select @bind="_newSensor.Category">
-                <option value="Environmental">Environmental</option>
-                <option value="Power Consumption">Power Consumption</option>
-                <option value="Actuator">Actuator</option>
-            </select>
-            <InputFile OnChange="OnFileSelected" />
-            <button type="submit">Register Sensor</button>
-            <button type="button" @onclick="GenerateRandomSensor"> Generate Random Sensor</button>
+        <div class="nav-group-label">MONITOR</div>
+        <button class="side-link @(_view == "overview" ? "active" : "")" @onclick='() => _view = "overview"'>📊 Overview</button>
+        <button class="side-link @(_view == "radar" ? "active" : "")" @onclick='() => _view = "radar"'>Signal Radar <span class="badge-live">LIVE</span></button>
+
+        <div class="nav-group-label">INGEST</div>
+        <button class="side-link @(_view == "register" ? "active" : "")" @onclick='() => _view = "register"'>➕ Register Sensor</button>
+        <button class="side-link @(_view == "stream" ? "active" : "")" @onclick='() => _view = "stream"'>〰 Telemetry Stream</button>
+        <button class="side-link @(_view == "tree" ? "active" : "")" @onclick='() => _view = "tree"'>🌳 Deployment Tree</button>
+        <button class="side-link @(_view == "files" ? "active" : "")" @onclick='() => _view = "files"'>📄 File Attachments</button>
+
+        <div class="sidebar-footer">
+            <span class="dot"></span>.NET 10 API
+            <button @onclick="SignOut">↩ Sign out</button>
         </div>
-    </EditForm>
-    @if (!string.IsNullOrEmpty(_registrationStatus))
-    {
-        <p><em>@_registrationStatus</em></p>
-    }
-</div>
+    </div>
 
-<div class="section-card">
-    <h3>Live Telemetry <span style="font-weight:normal;">(real-time via SignalR)</span></h3>
-    <div class="sensor-grid">
-        @foreach (var tile in _tiles.Values.OrderBy(t => t.SensorId))
-        {
-            <div class="sensor-tile @(tile.IsAnomaly ? "state-warning" : "state-normal")">
-                <strong>@tile.SensorId</strong>
-                <span>@tile.DisplayValue @tile.Unit</span>
+    <div class="main-panel">
+        <div class="topbar">
+            <div>
+                <h1>@ViewTitle()</h1>
+                <div class="subtitle">@ViewSubtitle()</div>
             </div>
-        }
-    </div>
+            <div class="topbar-right">
+                <div class="status-pill @(_hubConnected ? "" : "offline")"><span class="dot"></span> API · @(_hubConnected ? "connected" : "offline")</div>
+                <button class="btn-primary" @onclick='() => _view = "register"'>+ New sensor</button>
+            </div>
+        </div>
 
-    <h4>Anomaly &amp; Event Feed</h4>
-    <div class="alert-feed">
-        @foreach (var msg in _alerts.TakeLast(15))
+        @if (_view == "overview")
         {
-            <div class="alert-toast">@msg</div>
+            @OverviewView
+        }
+        @if (_view == "radar")
+        {
+            @RadarView
+        }
+        @if (_view == "register")
+        {
+            @RegisterView
+        }
+        @if (_view == "stream")
+        {
+            @StreamView
+        }
+        @if (_view == "tree")
+        {
+            @TreeView
+        }
+        @if (_view == "files")
+        {
+            @FilesView
         }
     </div>
-</div>
-
-<div class="section-card">
-    <h3>Advanced OOP Demonstrations</h3>
-    <button @onclick="LoadDemosAsync">Run Demos</button>
-
-    @if (_deploymentResult is not null)
-    {
-        <p>
-            <strong>Recursive deployment validation:</strong>
-            @(_deploymentResult.IsValid ? "✅ All nodes valid" : $"❌ Invalid at: {_deploymentResult.FirstInvalidPath}")
-        </p>
-    }
-    @if (_powerResult is not null)
-    {
-        <p>
-            <strong>Operator overloading:</strong> @_powerResult.Meter1 + @_powerResult.Meter2 → @_powerResult.Aggregate
-            (Δ = @_powerResult.Delta W)
-        </p>
-    }
-    @if (_soilHistory is not null)
-    {
-        <ul>
-            @foreach (var s in _soilHistory)
-            {
-                <li>@s.Sensor: [@string.Join(", ", s.Readings)] — avg @s.Average</li>
-            }
-        </ul>
-    }
 </div>
 
 @code {
-    private static readonly System.Text.RegularExpressions.Regex MacPattern =
-        new(@"^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$");
-    private readonly Random _rng = new();
-
-    private SensorRegistration _newSensor = new() { Category = "Environmental" };
-    private string _registrationStatus = string.Empty;
-    private IReadOnlyList<Microsoft.AspNetCore.Components.Forms.IBrowserFile>? _selectedFiles;
-
+    // ---------- Shared state ----------
+    private string _view = "overview";
     private HubConnection? _hub;
+    private bool _hubConnected;
     private readonly Dictionary<string, TileState> _tiles = new();
-    private readonly List<string> _alerts = new();
+    private readonly List<FeedItem> _alerts = new();
+    private int _packetsIngested;
+    private List<SensorRegistration> _registeredSensors = new();
 
-    private DeploymentValidationResult? _deploymentResult;
-    private PowerAggregateResult? _powerResult;
-    private List<SoilBatchSummary>? _soilHistory;
+    private string ViewTitle() => _view switch
+    {
+        "overview" => "Overview",
+        "radar" => "Signal Radar",
+        "register" => "Register Sensor",
+        "stream" => "Telemetry Stream",
+        "tree" => "Deployment Tree",
+        "files" => "File Attachments",
+        _ => ""
+    };
+    private string ViewSubtitle() => _view switch
+    {
+        "overview" => "Live ingestion snapshot across the mesh",
+        "radar" => "Real-time anomaly sweep across all nodes",
+        "register" => "Attach a new sensor registration record",
+        "stream" => "Typed packets · generics · aggregation",
+        "tree" => "Recursive parent-chain validation",
+        "files" => "Multipart uploads to sensor profiles",
+        _ => ""
+    };
 
     protected override async Task OnInitializedAsync()
     {
-        if (!Auth.IsAuthenticated)
-        {
-            Nav.NavigateTo("/", replace: true);
-            return;
-        }
+        if (!Auth.IsAuthenticated) { Nav.NavigateTo("/", replace: true); return; }
 
-        // Same port as Program.cs — the API's HTTPS port from Step 5.
+        _registeredSensors = await Api.GetSensorsAsync() ?? new();
+
         _hub = new HubConnectionBuilder()
             .WithUrl("https://localhost:7170/hubs/telemetry")
             .WithAutomaticReconnect()
@@ -112,14 +109,137 @@
 
         _hub.On<TelemetryBroadcast>("TelemetryReceived", broadcast =>
         {
+            _packetsIngested++;
             _tiles[broadcast.SensorId] = new TileState(broadcast.SensorId, broadcast.DisplayValue, broadcast.Unit, broadcast.IsAnomaly);
             if (broadcast.IsAnomaly)
-                _alerts.Add($"⚠ {broadcast.Timestamp:T} — {broadcast.SensorId} anomaly: {broadcast.DisplayValue}{broadcast.Unit}");
+            {
+                var severity = ClassifySeverity(broadcast);
+                _alerts.Insert(0, new FeedItem(DateTime.Now, severity, $"{broadcast.SensorId} — {broadcast.DisplayValue}{broadcast.Unit}"));
+            }
             InvokeAsync(StateHasChanged);
         });
 
+        _hub.Reconnected += _ => { _hubConnected = true; return InvokeAsync(StateHasChanged); };
+        _hub.Closed += _ => { _hubConnected = false; return InvokeAsync(StateHasChanged); };
+
         await _hub.StartAsync();
+        _hubConnected = _hub.State == HubConnectionState.Connected;
     }
+
+    private string ClassifySeverity(TelemetryBroadcast b)
+    {
+        if (double.TryParse(b.DisplayValue, out var v) && (v <= 2 || v >= 98)) return "critical";
+        return "warning";
+    }
+
+    public async ValueTask DisposeAsync() { if (_hub is not null) await _hub.DisposeAsync(); }
+    private void SignOut() { Auth.SignOut(); Nav.NavigateTo("/", replace: true); }
+
+    private record TileState(string SensorId, string DisplayValue, string Unit, bool IsAnomaly);
+    private record FeedItem(DateTime Time, string Severity, string Message);
+
+    // ================= OVERVIEW =================
+    private RenderFragment OverviewView => @<div>
+        <div class="stat-grid">
+            <div class="stat-card"><div class="label">Registered nodes</div><div class="value">@_registeredSensors.Count</div></div>
+            <div class="stat-card"><div class="label">Packets ingested</div><div class="value teal">@_packetsIngested</div></div>
+            <div class="stat-card"><div class="label">Anomalies flagged</div><div class="value red">@_alerts.Count</div><div class="sub">@(_alerts.Count(a => a.Severity == "critical")) critical</div></div>
+            <div class="stat-card"><div class="label">Connection</div><div class="value amber">@(_hubConnected ? "Live" : "Down")</div><div class="sub">async · non-blocking</div></div>
+        </div>
+
+        <div class="section-label">RECENT REGISTRATIONS</div>
+        <table class="dark-table">
+            <thead><tr><th>DEVICE / MAC</th><th>LOCATION</th><th>CATEGORY</th></tr></thead>
+            <tbody>
+                @foreach (var s in _registeredSensors.AsEnumerable().Reverse().Take(6))
+                {
+                    <tr>
+                        <td>@s.MacAddress</td>
+                        <td>@s.Location</td>
+                        <td><span class="chip @(s.Category == "Power Consumption" ? "power" : s.Category == "Actuator" ? "actuator" : "env")">@s.Category.ToUpper()</span></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>;
+
+    // ================= SIGNAL RADAR =================
+    private (double x, double y) RadarPos(int index, int total)
+    {
+        double angle = (2 * Math.PI / Math.Max(total, 1)) * index - Math.PI / 2;
+        double radius = 60 + (index % 3) * 25;
+        return (150 + radius * Math.Cos(angle), 150 + radius * Math.Sin(angle));
+    }
+
+    private RenderFragment RadarView => @<div>
+        <div class="callout" style="margin-bottom:16px;">Not a progress bar — nodes are positioned by zone on a radar sweep; dots pulse red the instant a packet breaches its threshold.</div>
+        <div class="radar-layout">
+            <div class="radar-box">
+                <div class="radar-sweep"></div>
+                <svg viewBox="0 0 300 300" style="width:100%;">
+                    <circle cx="150" cy="150" r="50" fill="none" stroke="#2b3341" />
+                    <circle cx="150" cy="150" r="90" fill="none" stroke="#2b3341" />
+                    <circle cx="150" cy="150" r="130" fill="none" stroke="#2b3341" />
+                    @{
+                        int i = 0; var tileList = _tiles.Values.ToList();
+                    }
+                    @foreach (var tile in tileList)
+                    {
+                        var (x, y) = RadarPos(i, tileList.Count);
+                        <circle class="radar-dot" cx="@x" cy="@y" r="7" fill="@(tile.IsAnomaly ? "#ef5350" : "#35d0b0")" />
+                        i++;
+                    }
+                </svg>
+            </div>
+            <div class="feed-list">
+                @foreach (var item in _alerts.Take(6))
+                {
+                    <div class="feed-item @item.Severity">
+                        <div class="meta @item.Severity">@item.Time.ToString("HH:mm:ss") · @item.Severity.ToUpper()</div>
+                        <div>@item.Message</div>
+                    </div>
+                }
+                @if (_alerts.Count == 0)
+                {
+                    <div class="feed-item"><div class="meta">waiting</div><div>No anomalies yet — sweep is live.</div></div>
+                }
+            </div>
+        </div>
+    </div>;
+
+    // ================= REGISTER =================
+    private static readonly System.Text.RegularExpressions.Regex MacPattern =
+        new(@"^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$");
+    private readonly Random _rng = new();
+    private SensorRegistration _newSensor = new() { Category = "Environmental" };
+    private string _registrationStatus = string.Empty;
+    private IReadOnlyList<Microsoft.AspNetCore.Components.Forms.IBrowserFile>? _selectedFiles;
+
+    private RenderFragment RegisterView => @<div class="form-card">
+        <label>Device MAC address / Unique identifier</label>
+        <input @bind="_newSensor.MacAddress" placeholder="AA:BB:CC:00:00:0X" />
+
+        <label>Zone / Node ID</label>
+        <input @bind="_newSensor.Location" placeholder="Zone 1 · SubZone B" />
+        <div class="hint">Used by the recursive deployment validator</div>
+
+        <label>Sensor category</label>
+        <div class="category-grid">
+            <div class="category-card @(_newSensor.Category == "Environmental" ? "selected" : "")" @onclick='() => _newSensor.Category = "Environmental"'>🌿<br />Environmental<br /><small style="color:var(--text-dim)">→ float</small></div>
+            <div class="category-card @(_newSensor.Category == "Power Consumption" ? "selected" : "")" @onclick='() => _newSensor.Category = "Power Consumption"'>⚡<br />Power<br /><small style="color:var(--text-dim)">→ int</small></div>
+            <div class="category-card @(_newSensor.Category == "Actuator" ? "selected" : "")" @onclick='() => _newSensor.Category = "Actuator"'>🔀<br />Actuator<br /><small style="color:var(--text-dim)">→ bool</small></div>
+        </div>
+
+        <InputFile OnChange="OnFileSelected" />
+        <div style="margin-top:16px;display:flex;gap:10px;">
+            <button class="btn-secondary" @onclick="GenerateRandomSensor">🎲 Generate Random</button>
+            <button class="btn-primary" @onclick="RegisterSensorAsync">Register &amp; POST to API</button>
+        </div>
+        @if (!string.IsNullOrEmpty(_registrationStatus))
+        {
+            <p style="margin-top:12px;color:var(--text-dim);">@_registrationStatus</p>
+        }
+    </div>;
 
     private async Task RegisterSensorAsync()
     {
@@ -128,11 +248,10 @@
             _registrationStatus = "MAC address must be in the format AA:BB:CC:DD:EE:FF.";
             return;
         }
-
         bool ok = await Api.RegisterSensorAsync(_newSensor);
         if (ok && _selectedFiles is not null) await Api.UploadAttachmentAsync(_newSensor.MacAddress, _selectedFiles);
-
         _registrationStatus = ok ? $"Sensor {_newSensor.MacAddress} registered." : "Registration failed — check the API is running.";
+        if (ok) _registeredSensors.Add(_newSensor);
         _newSensor = new SensorRegistration { Category = "Environmental" };
         _selectedFiles = null;
     }
@@ -142,19 +261,92 @@
         byte[] mac = new byte[6];
         _rng.NextBytes(mac);
         _newSensor.MacAddress = string.Join(":", mac.Select(b => b.ToString("X2")));
-        _newSensor.Location = $"Zone {_rng.Next(1, 5)} / Node {_rng.Next(10, 99)}";
+        _newSensor.Location = $"Zone {_rng.Next(1, 5)} / SubZone {(char)('A' + _rng.Next(0, 4))}";
     }
 
     private void OnFileSelected(InputFileChangeEventArgs e) => _selectedFiles = e.GetMultipleFiles(maximumFileCount: 1);
 
-    private async Task LoadDemosAsync()
+    // ================= STREAM (OOP demo) =================
+    private PowerAggregateResult? _powerResult;
+    private List<SoilBatchSummary>? _soilHistory;
+
+    private RenderFragment StreamView => @<div>
+        <button class="btn-primary" style="margin-bottom:16px;" @onclick="LoadStreamDemoAsync">Run Demo</button>
+        <div class="code-panels">
+            <div class="code-panel">
+                <div class="file-label">TelemetryPacket.cs — generic wrapper</div>
+                <pre>public class TelemetryPacket&lt;T&gt;
+{
+    public T Value { get; set; }
+    // float | int | bool — no boxing
+}</pre>
+            </div>
+            <div class="code-panel">
+                <div class="file-label">PowerReading.cs — operator overload</div>
+                <pre>public static PowerReading operator +(
+    PowerReading a, PowerReading b)
+    =&gt; new(a.Watts + b.Watts);</pre>
+                @if (_powerResult is not null)
+                {
+                    <div class="agg-row">
+                        <div class="agg-box"><div class="num">@_powerResult.Meter1</div></div>
+                        <div>+</div>
+                        <div class="agg-box"><div class="num">@_powerResult.Meter2</div></div>
+                        <div>=</div>
+                        <div class="agg-box result"><div class="num">@_powerResult.Aggregate</div></div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="section-label">ARRAYS → COLLECTIONS</div>
+        @if (_soilHistory is not null)
+        {
+            <div class="code-panel">
+                @foreach (var s in _soilHistory)
+                {
+                    <div style="margin-bottom:6px;">@s.Sensor: [@string.Join(", ", s.Readings)] — avg @s.Average</div>
+                }
+            </div>
+        }
+    </div>;
+
+    private async Task LoadStreamDemoAsync()
     {
-        _deploymentResult = await Api.GetDeploymentValidationAsync();
         _powerResult = await Api.GetPowerAggregateAsync();
         _soilHistory = await Api.GetSoilHistoryAsync();
     }
 
-    public async ValueTask DisposeAsync() { if (_hub is not null) await _hub.DisposeAsync(); }
+    // ================= DEPLOYMENT TREE =================
+    private DeploymentValidationResult? _deploymentResult;
 
-    private record TileState(string SensorId, string DisplayValue, string Unit, bool IsAnomaly);
+    private RenderFragment TreeView => @<div>
+        <div class="trace-box">@(_deploymentResult is null ? "Press \"Run validator\" to trace the recursion…" : (_deploymentResult.IsValid ? "✅ All nodes valid" : $"❌ Invalid at: {_deploymentResult.FirstInvalidPath}"))</div>
+        <div class="tree-line"><span>Facility A <small style="color:var(--text-dim)">root</small></span> <span class="tree-check ok">✓</span></div>
+        <div class="tree-line"><span class="indent-1">Zone 1 <small style="color:var(--text-dim)">depth 1</small></span> <span class="tree-check ok">✓</span></div>
+        <div class="tree-line"><span class="indent-2">Sub-Zone B <small style="color:var(--text-dim)">depth 2</small></span> <span class="tree-check ok">✓</span></div>
+        <div class="tree-line"><span class="indent-3">ESP32-Node-22 <small style="color:var(--text-dim)">leaf</small></span> <span class="tree-check @(_deploymentResult is null ? "pending" : _deploymentResult.IsValid ? "ok" : "bad")">@(_deploymentResult is null ? "○" : _deploymentResult.IsValid ? "✓" : "✕")</span></div>
+        <button class="btn-primary" style="margin-top:16px;" @onclick="RunValidatorAsync">▶ Run validator</button>
+    </div>;
+
+    private async Task RunValidatorAsync() => _deploymentResult = await Api.GetDeploymentValidationAsync();
+
+    // ================= FILE ATTACHMENTS =================
+    private RenderFragment FilesView => @<div>
+        <div class="dropzone">
+            <InputFile OnChange="OnFileSelected" />
+            <div>Drop files or click to browse</div>
+            <small>multipart/form-data</small>
+        </div>
+        @if (_selectedFiles is not null)
+        {
+            @foreach (var f in _selectedFiles)
+            {
+                <div class="file-row">
+                    <div><div class="name">@f.Name</div><div class="meta">@((f.Size / 1024.0).ToString("F1")) KB</div></div>
+                    <div class="lock">🔒 pending upload</div>
+                </div>
+            }
+        }
+    </div>;
 }
