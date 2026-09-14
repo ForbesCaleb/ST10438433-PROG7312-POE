@@ -5,7 +5,7 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
   "mainAssemblyName": "SmartX.Client",
   "applicationEnvironment": "Development",
   "resources": {
-    "hash": "sha256-jfLeY2bUGGv5BirmeTeaOjXQ07H8RiFbh17AGd/xfSg=",
+    "hash": "sha256-3VFEVsjtMb3OaSLqmWxSm/R2GjGKA5jY4VQ1+oKV0wM=",
     "jsModuleNative": [
       {
         "name": "dotnet.native.nv11mnxpl9.js"
@@ -1284,8 +1284,8 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "SmartX.Shared.wasm",
-        "name": "SmartX.Shared.d0hje1i13y.wasm",
-        "hash": "sha256-3a4nqInGWo5TnDhPGcrT2oyJR9fRWInrmluvVwyHP40=",
+        "name": "SmartX.Shared.rv8zwstano.wasm",
+        "hash": "sha256-t3cxa8Z2vWcIRfrfNv3734tpdYUedFQwvCusw0/2Qbc=",
         "cache": "force-cache"
       },
       {
@@ -1296,22 +1296,22 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
       },
       {
         "virtualPath": "SmartX.Client.wasm",
-        "name": "SmartX.Client.9fvg365lyw.wasm",
-        "hash": "sha256-67E+XJQN5/DVvMPUYQqhAy0duX9YXM/RS3vRnOSSUIY=",
+        "name": "SmartX.Client.7rusx5z11e.wasm",
+        "hash": "sha256-TRAS3AeMj0rN9kVQGmFJLusqbh0ORG/sEJB68jiHSt0=",
         "cache": "force-cache"
       }
     ],
     "pdb": [
       {
         "virtualPath": "SmartX.Shared.pdb",
-        "name": "SmartX.Shared.xfefljkm5a.pdb",
-        "hash": "sha256-3RdD7Tt1J4Ny2XHT3BoxExaSCsE8I16o5H02/qPT3LM=",
+        "name": "SmartX.Shared.a0xdstm9tf.pdb",
+        "hash": "sha256-WrgAp5+0uKBccu4bLvat7iPTaGBnWFafN9HwlSM/tLA=",
         "cache": "force-cache"
       },
       {
         "virtualPath": "SmartX.Client.pdb",
-        "name": "SmartX.Client.p921bsxrqs.pdb",
-        "hash": "sha256-vWxwuNe/C+RTOSlnaYMVD78Ja9yPOVGyiUMo68E2uZU=",
+        "name": "SmartX.Client.zxffu7zk6g.pdb",
+        "hash": "sha256-d4hIUrcTWCEL0x29M39R6/WzBBDJFnGED0+cTifUm2Q=",
         "cache": "force-cache"
       }
     ],
@@ -1327,6 +1327,9 @@ var e=!1;const t=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,
     ]
   },
   "debugLevel": -1,
+  "appsettings": [
+    "../appsettings.json"
+  ],
   "globalizationMode": "sharded",
   "extensions": {
     "blazor": {}

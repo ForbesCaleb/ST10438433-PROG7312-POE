@@ -1,0 +1,51 @@
+﻿@page "/"
+@inject FirebaseAuthService FirebaseAuth
+@inject SmartX.Client.Services.AuthState Auth
+@inject NavigationManager Nav
+
+<div class="section-card" style="max-width:360px;margin:4rem auto;">
+    <h3>Smart-X Gateway Login</h3>
+    <EditForm Model="_credentials" OnValidSubmit="HandleLogin">
+        <div class="reg-form" style="flex-direction:column;align-items:stretch;">
+            <input @bind="_credentials.Email" placeholder="Email" />
+            <input @bind="_credentials.Password" type="password" placeholder="Password" />
+            <button type="submit">Sign In</button>
+        </div>
+    </EditForm>
+    <button style="margin-top:0.6rem;" @onclick="ContinueAsGuest">Continue as Guest</button>
+    @if (!string.IsNullOrEmpty(_error))
+    {
+        <p style="color:#c62828;">@_error</p>
+    }
+</div>
+
+@code {
+    private LoginModel _credentials = new();
+    private string _error = string.Empty;
+
+    private async Task HandleLogin()
+    {
+        var result = await FirebaseAuth.SignInAsync(_credentials.Email, _credentials.Password);
+        if (result is not null)
+        {
+            Auth.SignIn(result.Email, result.IdToken);
+            Nav.NavigateTo("/gateway");
+        }
+        else
+        {
+            _error = "Invalid email or password.";
+        }
+    }
+
+    private void ContinueAsGuest()
+    {
+        Auth.SignIn("Guest", asGuest: true);
+        Nav.NavigateTo("/gateway");
+    }
+
+    private class LoginModel
+    {
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+    }
+}

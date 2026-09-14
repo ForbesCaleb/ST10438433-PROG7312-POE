@@ -22,5 +22,10 @@ public class PowerReading
     public static bool operator >(PowerReading a, PowerReading b) => a.Watts > b.Watts;
     public static bool operator <(PowerReading a, PowerReading b) => a.Watts < b.Watts;
 
+    public string Describe() => $"{MeterId} reading: {Watts:F1} W";
+    public string Describe(string unitLabel) => $"{MeterId} reading: {Watts:F1} {unitLabel}";
+    public string Describe(bool includeTimestamp, DateTime timestamp) =>
+        includeTimestamp ? $"{MeterId} reading: {Watts:F1} W (at {timestamp:T})" : Describe();
+
     public override string ToString() => $"{MeterId}: {Watts:F1} W";
 }

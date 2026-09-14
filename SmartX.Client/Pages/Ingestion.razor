@@ -1,6 +1,8 @@
 ﻿@page "/ingestion"
 @using Microsoft.AspNetCore.SignalR.Client
 @inject ApiClient Api
+@inject SmartX.Client.Services.AuthState Auth
+@inject NavigationManager Nav
 @implements IAsyncDisposable
 
 <h1>Sensor Data Ingestion &amp; Telemetry</h1>
@@ -18,6 +20,7 @@
             </select>
             <InputFile OnChange="OnFileSelected" />
             <button type="submit">Register Sensor</button>
+            <button type="button" @onclick="GenerateRandomSensor"> Generate Random Sensor</button>
         </div>
     </EditForm>
     @if (!string.IsNullOrEmpty(_registrationStatus))
@@ -28,7 +31,6 @@
 
 <div class="section-card">
     <h3>Live Telemetry <span style="font-weight:normal;">(real-time via SignalR)</span></h3>
-
     <div class="sensor-grid">
         @foreach (var tile in _tiles.Values.OrderBy(t => t.SensorId))
         {
@@ -47,7 +49,6 @@
         }
     </div>
 </div>
-
 
 <div class="section-card">
     <h3>Advanced OOP Demonstrations</h3>
@@ -78,8 +79,11 @@
     }
 </div>
 
-
 @code {
+    private static readonly System.Text.RegularExpressions.Regex MacPattern =
+        new(@"^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$");
+    private readonly Random _rng = new();
+
     private SensorRegistration _newSensor = new() { Category = "Environmental" };
     private string _registrationStatus = string.Empty;
     private IReadOnlyList<Microsoft.AspNetCore.Components.Forms.IBrowserFile>? _selectedFiles;
@@ -94,7 +98,13 @@
 
     protected override async Task OnInitializedAsync()
     {
-       
+        if (!Auth.IsAuthenticated)
+        {
+            Nav.NavigateTo("/", replace: true);
+            return;
+        }
+
+        // Same port as Program.cs — the API's HTTPS port from Step 5.
         _hub = new HubConnectionBuilder()
             .WithUrl("https://localhost:7170/hubs/telemetry")
             .WithAutomaticReconnect()
@@ -113,12 +123,26 @@
 
     private async Task RegisterSensorAsync()
     {
+        if (!MacPattern.IsMatch(_newSensor.MacAddress))
+        {
+            _registrationStatus = "MAC address must be in the format AA:BB:CC:DD:EE:FF.";
+            return;
+        }
+
         bool ok = await Api.RegisterSensorAsync(_newSensor);
         if (ok && _selectedFiles is not null) await Api.UploadAttachmentAsync(_newSensor.MacAddress, _selectedFiles);
 
         _registrationStatus = ok ? $"Sensor {_newSensor.MacAddress} registered." : "Registration failed — check the API is running.";
         _newSensor = new SensorRegistration { Category = "Environmental" };
         _selectedFiles = null;
+    }
+
+    private void GenerateRandomSensor()
+    {
+        byte[] mac = new byte[6];
+        _rng.NextBytes(mac);
+        _newSensor.MacAddress = string.Join(":", mac.Select(b => b.ToString("X2")));
+        _newSensor.Location = $"Zone {_rng.Next(1, 5)} / Node {_rng.Next(10, 99)}";
     }
 
     private void OnFileSelected(InputFileChangeEventArgs e) => _selectedFiles = e.GetMultipleFiles(maximumFileCount: 1);

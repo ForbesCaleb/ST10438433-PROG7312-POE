@@ -1,4 +1,6 @@
-﻿@page "/"
+﻿@page "/gateway"
+@inject SmartX.Client.Services.AuthState Auth
+@inject NavigationManager Nav
 
 <h1>Smart-X IoT Mesh Gateway</h1>
 <p>Choose an architectural pillar below.</p>
@@ -9,13 +11,23 @@
         <p>Register sensors, upload configs/logs, and watch live telemetry with anomaly alerts.</p>
     </NavLink>
 
-    <div class="pillar disabled">
+    <div class="pillar disabled" title="Coming in Part 2 of the PoE">
         <h3> Real-Time Command Stream &amp; History</h3>
         <p>Disabled — to be implemented in Part 2 of the PoE.</p>
     </div>
 
-    <div class="pillar disabled">
+    <div class="pillar disabled" title="Coming in the final PoE">
         <h3> Network Topology &amp; Mesh Routing</h3>
         <p>Disabled — to be implemented in the final PoE.</p>
     </div>
 </div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        if (!Auth.IsAuthenticated)
+        {
+            Nav.NavigateTo("/", replace: true);
+        }
+    }
+}
